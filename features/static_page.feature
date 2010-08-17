@@ -57,7 +57,25 @@ Feature: Basic CRUD StaticPage
 
     Scenario: StaticPage can not bem empty
         Given an admin session
-        And a static page group exists with id: 1
         When I go to new static page page
         And I submit the form
         Then these field have errors: name, group_id, content
+
+    Scenario Outline: StaticPage can be found through finder
+        Given an anonymous session
+        And a static page group exists with id: 1
+        And a static page with name: "foo", group_id: 1, content: "Lorem Ipsum"
+        When I go to front page
+        And I fill the "search" form with:
+            | q | <search>  |
+        And I submit the form
+        Then I see the search result page
+        And the page contain these boxes within "finder" table:
+            | items-label   | Pages |
+            | items-content | foo   |
+
+            Scenarios:
+                | q     |
+                | foo   |
+                | Lorem |
+                | Ipsum |
