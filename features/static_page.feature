@@ -2,16 +2,20 @@
 Feature: Basic CRUD StaticPage
 
     Scenario Outline: Only admin users can access StaticPages CRUD
-        Given a non admin session
+        Given <session> session
         When I open <action> page
         Then I see not found page
 
         Scenarios:
-            | action                |
-            | static pages          |
-            | new static page       |
-            | edit static page      |
-            | destroy static page   |
+            | session       | action                |
+            | a regular     | static pages          |
+            | a regular     | new static page       |
+            | a regular     | edit static page      |
+            | a regular     | destroy static page   |
+            | an anonymous  | static pages          |
+            | an anonymous  | new static page       |
+            | an anonymous  | edit static page      |
+            | an anonymous  | destroy static page   |
 
     Scenario: Index shows certain fields
         Given an admin session
