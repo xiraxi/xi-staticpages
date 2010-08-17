@@ -1,7 +1,7 @@
 
 Feature: StaticPage Group features
 
-    Scenario Outline: StaticPage Group front static page depends of locale and can be nil
+    Scenario Outline: StaticPage Group front static page depends on locale and can be nil
         Given an anonymous session
         And a static page group with id: 1
         And a static page group with id: 2
@@ -10,7 +10,7 @@ Feature: StaticPage Group features
             | name      | foo           |
             | content   | Lorem Ipsum   |
             | group_id  | <group>       |
-            | locale    | <page_locale>      |
+            | locale    | <page_locale> |
             | front     | <front>       |
         When I load static page group with id: 1
         Then static page should be <page>

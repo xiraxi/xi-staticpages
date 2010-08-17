@@ -2,7 +2,7 @@
 Feature: StaticPage public controler
 
     Scenario Outline: Non admin session can not create a static page
-        Given <session> session 
+        Given <session> session
         When I go to show static page page
         Then I see the not found page
 
@@ -16,7 +16,7 @@ Feature: StaticPage public controler
         When I go to show static page page with from_edit: true
         Then I see show static page
         And page title should be "New page"
-        And the page contain a box "action-box"
+        And the page contains a box "action-box"
 
     Scenario: Show edit to admin
         Given an admin session
@@ -24,7 +24,7 @@ Feature: StaticPage public controler
         And a static page with name: foo, group_id: 1, content: "Lorem Ipsum"
         When I go to show static page
         Then page title should be "foo"
-        And the page contain a box "action-box"
+        And the page contains a box "action-box"
 
     Scenario Outline: Draft static pages are not shown to non admin users
         Given <session> session

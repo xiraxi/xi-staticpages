@@ -59,7 +59,7 @@ Feature: Basic CRUD StaticPage
             | description   | Short description |
             | content       | Lorem Ipsum       |
 
-    Scenario: StaticPage can not bem empty
+    Scenario: StaticPage can not be empty
         Given an admin session
         When I go to new static page page
         And I submit the form
@@ -74,7 +74,7 @@ Feature: Basic CRUD StaticPage
             | q | <search>  |
         And I submit the form
         Then I see the search result page
-        And the page contain these boxes within "finder" table:
+        And the page contains these boxes within "finder" table:
             | items-label   | Pages |
             | items-content | foo   |
 
