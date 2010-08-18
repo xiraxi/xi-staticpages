@@ -3,7 +3,7 @@ Feature: Basic CRUD StaticPage
 
     Scenario Outline: Only admin users can access StaticPages CRUD
         Given <session> session
-        When I open <action> page
+        When I go to the <action> page
         Then I see not found page
 
         Scenarios:
@@ -68,7 +68,7 @@ Feature: Basic CRUD StaticPage
     Scenario Outline: StaticPage can be found through finder
         Given an anonymous session
         And a static page group exists with id: 1
-        And a static page with name: "foo", group_id: 1, content: "Lorem Ipsum"
+        And a static page exists with name: "foo", group_id: 1, content: "Lorem Ipsum"
         When I go to front page
         And I fill the "search" form with:
             | q | <search>  |
@@ -79,7 +79,7 @@ Feature: Basic CRUD StaticPage
             | items-content | foo   |
 
             Scenarios:
-                | q     |
-                | foo   |
-                | Lorem |
-                | Ipsum |
+                | search   |
+                | foo      |
+                | Lorem    |
+                | Ipsum    |

@@ -1,46 +1,45 @@
 
 Feature: StaticPage public controler
 
-    Scenario Outline: Non admin session can not create a static page
+    @create
+    Scenario Outline: non admin users can not create a static page
         Given <session> session
-        When I go to show static page page
-        Then I see the not found page
+        When I go to the new static page page
+        Then I see the <content>
 
         Scenarios:
-            | session       |
-            | an anonymous  |
-            | a regular     |
+            | session        | content          |
+            | an anonymous   | "login form" box |
+            | a regular user | forbidden page   |
 
-    Scenario: An admin can create a new static page accessing through public show path
+    @create
+    Scenario: admin users can create new static pages
         Given an admin session
-        When I go to show static page page with from_edit: true
-        Then I see show static page
-        And page title should be "New page"
-        And the page contains a box "action-box"
-
-    Scenario: Show edit to admin
-        Given an admin session
-        And a static page group with id: 1
-        And a static page with name: foo, group_id: 1, content: "Lorem Ipsum"
-        When I go to show static page
-        Then page title should be "foo"
-        And the page contains a box "action-box"
+        When I go to the new static page page with from_edit: "true"
+        And I fill the "static page" form with:
+            | name      | foo                           |
+            | content   | This is the foo content       |
+        And I submit the "static page" form
+        Then I go to the static pages page
+        And the page contains these boxes within "static page item":
+            | name      | foo                           |
+            | content   | This is the foo content       |
 
     Scenario Outline: Draft static pages are not shown to non admin users
         Given <session> session
-        And a static page group with id: 1
-        And a static page with name: foo, group_id: 1, content: "Lorem Ipsum", draft: true
-        When I go to show static page
-        Then I see not found page
+        And a static page group exists with name: "Pages Group"
+        And a static page exists with name: "Test page", group: "Pages Group", content: "Lorem Ipsum", draft: true
+        When I go to the static page with id: "test-page"
+        Then I see the <content>
 
         Scenarios:
-            | session       |
-            | an anonymous  |
-            | a regular     |
+            | session        | content          |
+            | an anonymous   | "login form" box |
+            | a regular user | forbidden page   |
 
-    Scenario: Draft warning for static page to admin users 
+    Scenario: Draft warning for static page to admin users
         Given an admin session
-        And a static page group with id: 1
-        And a static page with name: foo, group_id: 1, content: "Lorem Ipsum", draft: true
-        When I go to show static page
+        And a static page group exists with name: "Pages Group"
+        And a static page exists with name: "Test page", group: "Pages Group", content: "Lorem Ipsum", draft: true
+        When I go to the static page with id: "test-page"
         Then the flash box contains "Warning: This is a draft"
