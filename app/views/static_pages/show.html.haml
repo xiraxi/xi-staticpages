@@ -1,12 +1,12 @@
 - content_for :page_title, @static_page.title
 
-%h1
-  = t("static_pages.edit.title")
+.static_pages
+  = raw @static_page.content
 
-= render :partial => "form"
 - if current_user and current_user.admin?
   - content_for :secondary_bar do
     .manage_box
       %h2= t("static_pages.management.title")
       %ul
+        %li= link_to t("static_pages.management.actions.edit"), edit_static_page_path(@static_page)
         %li= link_to t("static_pages.management.actions.new"), new_static_page_path

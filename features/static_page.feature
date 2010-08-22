@@ -22,8 +22,9 @@ Feature: Basic CRUD StaticPage
 
     Scenario: Index shows certain fields
         Given an admin session
+        And a static page exists with id: 1
         When I go to the static pages page
-        Then the page contains these boxes within "static page item":
+        Then the "static page item" box has these boxes in the same order:
             | Position     |
             | Draft        |
             | Name         |
