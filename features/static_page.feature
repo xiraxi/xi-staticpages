@@ -3,67 +3,62 @@ Feature: Basic CRUD StaticPage
 
     Scenario Outline: Only admin users can access StaticPages CRUD
         Given <session> session
-        When I go to the <action> page
-        Then I see not found page
-
+        When I go to the <action>
+        Then I see the <page> page
         Scenarios:
-            | session       | action                |
-            | a regular     | static pages          |
-            | a regular     | new static page       |
-            | a regular     | edit static page      |
-            | a regular     | destroy static page   |
-            | an anonymous  | static pages          |
-            | an anonymous  | new static page       |
-            | an anonymous  | edit static page      |
-            | an anonymous  | destroy static page   |
-
-    Scenario: Index shows certain fields
-        Given an admin session
-        When I go to the static pages page
-        Then the page contains these boxes within "crud-index":
-            | Position      |
-            | Draft         |
-            | Name          |
-            | Locale        |
-            | Front         |
-            | Special type  |
-            | Group_id      |
-
-    Scenario: Admin can create a StaticPage
-        Given an admin session
-        And a static page group exists with id: 1
-        When I go to the new static page page
-        And I fill in the "basic-crud" form with:
-            | Position      | 1                 |
-            | Draft         | false             |
-            | Name          | Foo               |
-            | Locale        | es                |
-            | Front         | true              |
-            | Special type  | nil               |
-            | Group_id      | 1                 |
-            | Tags          | foo, bar          |
-            | Description   | Short description |
-            | Content       | Lorem Ipsum       |
-        And I submit the form
-        Then I see the static pages page
-        And the flash box contains "Successfully created"
-        And the page contains these boxes within "crud-index"
-            | Position      | 1                 |
-            | Draft         | false             |
-            | Name          | Foo               |
-            | Locale        | es                |
-            | Front         | true              |
-            | Special type  | nil               |
-            | Group_id      | 1                 |
-            | Tags          | foo, bar          |
-            | Description   | Short description |
-            | Content       | Lorem Ipsum       |
+          | session        | action                             | page      |
+          | a regular user | static pages page                  | forbidden |
+          | a regular user | new static page page               | forbidden |
+          | a regular user | edit static page page with id: "1" | forbidden |
+          | an anonymous   | static pages page                  | login     |
+          | an anonymous   | new static page page               | login     |
+          | an anonymous   | edit static page page with id: "1" | login     |
 
     Scenario: StaticPage can not be empty
         Given an admin session
         When I go to the new static page page
         And I submit the form
         Then these field have errors: name, group_id, content
+
+    Scenario: Index shows certain fields
+        Given an admin session
+        When I go to the static pages page
+        Then the page contains these boxes within "static page item":
+            | Position     |
+            | Draft        |
+            | Name         |
+            | Locale       |
+            | Front        |
+            | Special type |
+            | Group        |
+
+    Scenario: Admin can create a StaticPage
+        Given an admin session
+        And a static page group exists with id: 1
+        When I go to the new static page page
+        And I fill in the following:
+            | Position     | 1                 |
+            | Name         | Foo               |
+            | Locale       | es                |
+            | Group        | 1                 |
+            | Tags         | foo, bar          |
+            | Description  | Short description |
+            | Content      | Lorem Ipsum       |
+        And I check "Front"
+        And I submit the form
+        Then I see the static pages page
+        And the flash box contains "Successfully created"
+        And the page contains these boxes within ""
+            | Position      | 1                 |
+            | Draft         | false             |
+            | Name          | Foo               |
+            | Locale        | es                |
+            | Front         | true              |
+            | Special type  | nil               |
+            | Group_id      | 1                 |
+            | Tags          | foo, bar          |
+            | Description   | Short description |
+            | Content       | Lorem Ipsum       |
 
     Scenario Outline: StaticPage can be found through finder
         Given an anonymous session
