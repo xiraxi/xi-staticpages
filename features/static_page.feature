@@ -18,7 +18,7 @@ Feature: Basic CRUD StaticPage
         Given an admin session
         When I go to the new static page page
         And I submit the form
-        Then these field have errors: name, group_id, content
+        Then these fields have errors: static_page_name, static_page_group_id, static_page_content
 
     Scenario: Index shows certain fields
         Given an admin session

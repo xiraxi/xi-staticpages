@@ -10,6 +10,14 @@ class StaticPagesController < ApplicationController
   end
 
   def create
+    @static_page = StaticPage.new(params[:static_page])
+    if @static_page.save
+      flash[:notice] = t("static_pages.create.success")
+      redirect_to statict_pages_path
+    else
+      flash[:notice] = t("static_pages.create.error")
+      render :action => "new"
+    end
   end
 
   def edit

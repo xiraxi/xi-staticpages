@@ -1,0 +1,40 @@
+%div.static-page
+  = form_for :static_page, :html => {:id => "static_pages_form"}, :url => { :action => :create } do |form|
+    %fieldset
+      %legend
+        = t("static_pages.form.title")
+      %ul
+        %li
+          = form.label :position
+          = form.text_field :position
+        %li
+          = form.check_box :draft
+          = form.label :draft
+        %li
+          = form.label :name
+          = form.text_field :name
+        %li
+          = form.label :locale
+          = form.text_field :locale
+        %li
+          = form.check_box :front
+          = form.label :front
+        %li
+          = form.label :special_type
+          = form.text_field :special_type
+        %li
+          = form.label :group_id
+          = form.text_field :group_id
+        %li
+          = form.label :tags
+          = form.text_field :tags
+        %li
+          = form.label :description
+          = form.text_field :description
+        %li
+          = form.label :content
+          = form.text_area :content
+
+    = buttons_bar do
+      = button_ok
+      = button_cancel(static_pages_path)
