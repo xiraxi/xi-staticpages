@@ -1,0 +1,17 @@
+
+en:
+  static_pages:
+    page_title: Static Pages
+    management:
+      title: Management
+      actions:
+        edit: Edit
+        new: New
+    new:
+      title: New static page
+    edit:
+      title: Edit static page
+    create:
+      success: The static page has been created successfuly.
+    form:
+      title: Static Page
