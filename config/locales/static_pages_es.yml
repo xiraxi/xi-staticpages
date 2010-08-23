@@ -5,14 +5,16 @@ es:
     management:
       title: Gestión
       actions:
-        edit: Editar
-        new: Nueva
+        edit: Editar página
+        new: Nueva página
     new:
       title: Nueva página estática
     edit:
       title: Editar página estática
     create:
       success: La página estática se ha creado correctamente.
+    update:
+      success: La página estática se ha actualizado correctamente.
     form:
       title: Página estática
   activerecord:

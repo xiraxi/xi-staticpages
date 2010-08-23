@@ -13,6 +13,8 @@ en:
       title: Edit static page
     create:
       success: The static page has been created successfuly.
+    update:
+      success: The static page has been updated successfuly.
     form:
       title: Static Page
   activerecord:
