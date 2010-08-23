@@ -15,3 +15,8 @@ en:
       success: The static page has been created successfuly.
     form:
       title: Static Page
+  activerecord:
+    attributes:
+      static_page:
+        title: Title
+        content: Content

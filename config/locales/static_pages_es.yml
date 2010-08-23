@@ -15,4 +15,8 @@ es:
       success: La página estática se ha creado correctamente.
     form:
       title: Página estática
-
+  activerecord:
+    attributes:
+      static_page:
+        title: Título
+        content: Contenido
