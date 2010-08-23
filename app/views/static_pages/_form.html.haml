@@ -10,6 +10,15 @@
         %li
           = form.label :content
           = form.text_area :content
+
+        %li
+          = form.label :locale
+          = form.select :locale, [[t("static_pages.form.fields.locale.any"), nil]] + I18n.available_locales.map {|l| [t("locale.label", :locale => l), l.to_s]}
+
+        %li
+          = form.label :version_of_id
+          = form.select :version_of_id, [[t("static_pages.form.fields.version_of.none"), nil]] + StaticPage::Version.order("name").map {|v| [v.label, v.id] }
+
     = buttons_bar do
       = button_ok
-      = button_cancel(static_page_path(1))
+      = button_cancel(static_pages_path)

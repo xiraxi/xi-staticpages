@@ -7,6 +7,7 @@ en:
       actions:
         edit: Edit
         new: New
+
     new:
       title: New static page
     edit:
@@ -17,8 +18,17 @@ en:
     update:
       success: The static page has been updated successfuly.
       error: "The static page can't be saved."
+
     form:
       title: Static Page
+
+      fields:
+        version_of:
+          none: None
+
+        locale:
+          any: Any
+
   activerecord:
     attributes:
       static_page:
