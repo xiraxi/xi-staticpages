@@ -1,6 +1,7 @@
 - content_for :page_title, @static_page.title
 
 .static_pages
+  %h1= @static_page.title
   = raw @static_page.content
 
 - if current_user and current_user.admin?
