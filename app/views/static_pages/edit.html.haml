@@ -4,9 +4,3 @@
   = t("static_pages.edit.title")
 
 = render :partial => "form"
-- if current_user and current_user.admin?
-  - content_for :secondary_bar do
-    .manage_box
-      %h2= t("static_pages.management.title")
-      %ul
-        %li= link_to t("static_pages.management.actions.new"), new_static_page_path
