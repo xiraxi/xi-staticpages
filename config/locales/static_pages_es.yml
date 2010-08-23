@@ -13,8 +13,10 @@ es:
       title: Editar página estática
     create:
       success: La página estática se ha creado correctamente.
+      error: No se ha podido crear la página estática.
     update:
       success: La página estática se ha actualizado correctamente.
+      error: No se ha podido actualizar la página estática.
     form:
       title: Página estática
   activerecord:

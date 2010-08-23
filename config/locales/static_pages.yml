@@ -13,8 +13,10 @@ en:
       title: Edit static page
     create:
       success: The static page has been created successfuly.
+      error: "The static page can't be created."
     update:
       success: The static page has been updated successfuly.
+      error: "The static page can't be saved."
     form:
       title: Static Page
   activerecord:
