@@ -19,8 +19,18 @@ es:
       error: No se ha podido actualizar la página estática.
     form:
       title: Página estática
+
+      fields:
+        version_of:
+          none: Ninguna
+
+        locale:
+          any: Cualquiera
+
   activerecord:
     attributes:
       static_page:
         title: Título
         content: Contenido
+        locale: Idioma
+        version_of: Versión de
