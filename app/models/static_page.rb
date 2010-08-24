@@ -1,8 +1,11 @@
 class StaticPage < ActiveRecord::Base
 
   has_friendly_id :title, :use_slug => true, :approximate_ascii => true
-  belongs_to :group, :class_name => "StaticPage::Group"
+
   belongs_to :version_of, :class_name => "StaticPage::Version"
+  belongs_to :parent, :class_name => "StaticPage", :foreign_key => "parent_id"
+
+  has_many :static_pages, :foreign_key => "parent_id"
 
   validates_presence_of :title, :content
 
