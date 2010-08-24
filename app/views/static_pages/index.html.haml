@@ -5,3 +5,10 @@
 
 %div.static_pages
   = render :partial => "item", :collection => @static_pages
+
+- content_for :secondary_bar do
+  .box.manage_box
+    %h2= t("static_pages.management.title")
+    %ul
+      %li= link_to t("static_pages.management.actions.new"), new_static_page_path
+
