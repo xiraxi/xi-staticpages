@@ -1,0 +1,7 @@
+- content_for :page_title, t("static_pages.page_title")
+
+%h1
+  = t("static_pages.title")
+
+%div.static_pages
+  = render :partial => "item", :collection => @static_pages

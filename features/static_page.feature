@@ -18,48 +18,26 @@ Feature: Basic CRUD StaticPage
         Given an admin session
         When I go to the new static page page
         And I submit the form
-        Then these fields have errors: static_page_name, static_page_group_id, static_page_content
+        Then these fields have errors: Title, Content
 
     Scenario: Index shows certain fields
         Given an admin session
         And a static page exists with id: 1
         When I go to the static pages page
-        Then the "static page item" box has these boxes in the same order:
-            | Position     |
-            | Draft        |
-            | Name         |
+        Then the "static page" box has these boxes in the same order:
+            | Title        |
             | Locale       |
-            | Front        |
-            | Special type |
-            | Group        |
 
     Scenario: Admin can create a StaticPage
         Given an admin session
-        And a static page group exists with id: 1
         When I go to the new static page page
         And I fill in the following:
-            | Position     | 1                 |
-            | Name         | Foo               |
-            | Locale       | es                |
-            | Group        | 1                 |
-            | Tags         | foo, bar          |
-            | Description  | Short description |
+            | Title        | Foo               |
             | Content      | Lorem Ipsum       |
-        And I check "Front"
+        And I select "English" from "Locale"
         And I submit the form
-        Then I see the static pages page
-        And the flash box contains "Successfully created"
-        And the page contains these boxes within ""
-            | Position      | 1                 |
-            | Draft         | false             |
-            | Name          | Foo               |
-            | Locale        | es                |
-            | Front         | true              |
-            | Special type  | nil               |
-            | Group_id      | 1                 |
-            | Tags          | foo, bar          |
-            | Description   | Short description |
-            | Content       | Lorem Ipsum       |
+        Then the flash box contains "The static page has been created successfuly"
+        And a static page exists with title: "Foo", content: "Lorem Ipsum", locale: en
 
     Scenario Outline: StaticPage can be found through finder
         Given an anonymous session

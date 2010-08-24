@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
 
-  only_admins :new, :create, :edit, :update, :destroy
+  only_admins :new, :create, :edit, :update, :destroy, :index
 
   def new
     @static_page = StaticPage.new
@@ -40,4 +40,7 @@ class StaticPagesController < ApplicationController
     # TODO
   end
 
+  def index
+    @static_pages = StaticPage.all
+  end
 end

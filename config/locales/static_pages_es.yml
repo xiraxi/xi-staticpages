@@ -2,6 +2,7 @@
 es:
   static_pages:
     page_title: Páginas estáticas 
+    title: Páginas estáticas 
     management:
       title: Gestión
       actions:

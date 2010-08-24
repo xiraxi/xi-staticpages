@@ -2,6 +2,7 @@
 en:
   static_pages:
     page_title: Static Pages
+    title: Static Pages
     management:
       title: Management
       actions:

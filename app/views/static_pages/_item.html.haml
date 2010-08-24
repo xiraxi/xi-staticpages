@@ -1,0 +1,9 @@
+%dl.static_page
+  %dt
+    = field_label(StaticPage, :title)
+  %dd
+    = link_to(item.title, static_page_path(item))
+  %dt
+    = field_label(StaticPage, :locale)
+  %dd
+    = item.locale
