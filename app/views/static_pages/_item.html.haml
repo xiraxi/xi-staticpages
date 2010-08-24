@@ -7,3 +7,8 @@
     = field_label(StaticPage, :locale)
   %dd
     = item.locale
+  - if item.work_as_directory
+    %dt
+      = t("static_pages.children.list")
+    %dd
+      = render :partial => "item", :collection => item.children

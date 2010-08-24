@@ -11,6 +11,7 @@ es:
         index: Índice de páginas
     children:
       title: Secciones
+      list: Hijos
 
     new:
       title: Nueva página estática
@@ -44,6 +45,7 @@ es:
         version_of_id: Versión de
         work_as_directory: Usar como carpeta
         parent_id: Padre
+        position: Posición
     errors:
       static_page:
         directory_or_child: "Una página no puede ser carpeta y tener un padre a la vez"

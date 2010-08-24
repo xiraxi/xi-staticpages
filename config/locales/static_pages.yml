@@ -11,6 +11,7 @@ en:
         index: Index
     children:
       title: Sections
+      list: Children
 
     new:
       title: New static page
@@ -45,6 +46,7 @@ en:
         version_of_id: Version of
         work_as_directory: Work as a directory
         parent_id: Parent
+        position: Position
     errors:
       static_page:
         directory_or_child: "Page can not be directory and have parent at the same time"

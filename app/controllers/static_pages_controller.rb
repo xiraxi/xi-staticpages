@@ -41,6 +41,6 @@ class StaticPagesController < ApplicationController
   end
 
   def index
-    @static_pages = StaticPage.all
+    @static_pages = StaticPage.without_parent.order("work_as_directory, position").all
   end
 end
