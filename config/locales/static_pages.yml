@@ -30,8 +30,18 @@ en:
         locale:
           any: Any
 
+        parent:
+          none: None
+
   activerecord:
     attributes:
       static_page:
         title: Title
         content: Content
+        locale: Language
+        version_of_id: Version of
+        work_as_directory: Work as a directory
+        parent_id: Parent
+    errors:
+      static_page:
+        directory_or_child: "Page can not be directory and have parent at the same time"

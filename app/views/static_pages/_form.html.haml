@@ -1,5 +1,6 @@
 %div.static-page
   = form_for @static_page, :html => {:id => "static_pages_form"} do |form|
+    = error_messages_for @static_page
     %fieldset
       %legend
         = t("static_pages.form.title")
@@ -18,6 +19,12 @@
         %li
           = form.label :version_of_id
           = form.select :version_of_id, [[t("static_pages.form.fields.version_of.none"), nil]] + StaticPage::Version.order("name").map {|v| [v.label, v.id] }
+        %li
+          = form.check_box :work_as_directory
+          = form.label :work_as_directory
+        %li
+          = form.label :parent_id
+          = form.select :parent_id, [[t("static_pages.form.fields.parent.none"), nil]] + StaticPage.without_parent.as_directory.reject{ |s| s.id == @static_page.id }.map{ |s| [s.title, s.id] }
 
     = buttons_bar do
       = button_ok

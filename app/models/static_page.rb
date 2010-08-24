@@ -9,6 +9,16 @@ class StaticPage < ActiveRecord::Base
 
   validates_presence_of :title, :content
 
+  validate :directory_or_child
+  def directory_or_child
+    if work_as_directory and parent_id
+      self.errors[:base] << I18n.t("activerecord.errors.static_page.directory_or_child")
+    end
+  end
+
+  scope :without_parent,  where("parent_id IS NULL")
+  scope :as_directory,    where(:work_as_directory => true)
+
   def self.version_of(version)
     if version.kind_of?(String)
       version = StaticPage::Version.find_by_name(version)
