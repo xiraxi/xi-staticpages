@@ -5,9 +5,10 @@ class StaticPage < ActiveRecord::Base
   belongs_to :version_of, :class_name => "StaticPage::Version"
   belongs_to :parent, :class_name => "StaticPage", :foreign_key => "parent_id"
 
-  has_many :children, :class_name => "StaticPage", :foreign_key => "parent_id"
+  has_many :children, :class_name => "StaticPage", :foreign_key => "parent_id", :order => "position"
 
   validates_presence_of :title, :content
+  validates :position, :numericality => { :only_integer => true }
 
   validate :directory_or_child
   def directory_or_child

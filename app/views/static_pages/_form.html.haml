@@ -17,6 +17,10 @@
           = form.select :locale, [[t("static_pages.form.fields.locale.any"), nil]] + I18n.available_locales.map {|l| [t("locale.label", :locale => l), l.to_s]}
 
         %li
+          = form.label :position
+          = form.text_field :position
+
+        %li
           = form.label :version_of_id
           = form.select :version_of_id, [[t("static_pages.form.fields.version_of.none"), nil]] + StaticPage::Version.order("name").map {|v| [v.label, v.id] }
         %li
