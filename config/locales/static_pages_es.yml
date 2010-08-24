@@ -8,6 +8,10 @@ es:
       actions:
         edit: Editar página
         new: Nueva página
+        index: Índice de páginas
+    children:
+      title: Secciones
+
     new:
       title: Nueva página estática
     edit:

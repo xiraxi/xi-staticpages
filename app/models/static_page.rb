@@ -5,7 +5,7 @@ class StaticPage < ActiveRecord::Base
   belongs_to :version_of, :class_name => "StaticPage::Version"
   belongs_to :parent, :class_name => "StaticPage", :foreign_key => "parent_id"
 
-  has_many :static_pages, :foreign_key => "parent_id"
+  has_many :children, :class_name => "StaticPage", :foreign_key => "parent_id"
 
   validates_presence_of :title, :content
 

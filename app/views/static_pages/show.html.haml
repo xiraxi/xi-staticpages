@@ -1,13 +1,30 @@
 - content_for :page_title, @static_page.title
 
+%div.breadcrumbs
+  - if parent = @static_page.parent
+    %span
+      = link_to(parent.title, static_page_path(parent))
+      &nbsp;>&nbsp;
+  %span= @static_page.title
+
 .static_pages
   %h1= @static_page.title
   = raw @static_page.content
 
-- if current_user and current_user.admin?
-  - content_for :secondary_bar do
+- content_for :secondary_bar do
+  - if current_user and current_user.admin?
     .box.manage_box
       %h2= t("static_pages.management.title")
       %ul
+        %li= link_to t("static_pages.management.actions.index"), static_pages_path
         %li= link_to t("static_pages.management.actions.edit"), edit_static_page_path(@static_page)
         %li= link_to t("static_pages.management.actions.new"), new_static_page_path
+  - parent = @static_page.parent ? @static_page.parent : @static_page
+  - if parent.work_as_directory
+    .box.section_box
+      %h2= t("static_pages.children.title")
+      .content
+        .static_pages_children
+          %ul
+            - parent.children.each do |page|
+              %li= link_to(page.title, static_page_path(page))

@@ -8,6 +8,9 @@ en:
       actions:
         edit: Edit
         new: New
+        index: Index
+    children:
+      title: Sections
 
     new:
       title: New static page
