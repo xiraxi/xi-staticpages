@@ -10,7 +10,7 @@
           = form.text_field :title
         %li
           = form.label :content
-          = form.text_area :content
+          = form.text_area :content, :size => "60x25", :class => "wysiwyg-editor"
 
         %li
           = form.label :locale
