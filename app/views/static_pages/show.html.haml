@@ -4,12 +4,13 @@
   - if parent = @static_page.parent
     %span
       = link_to(parent.title, static_page_path(parent))
-      &nbsp;>&nbsp;
-  %span= @static_page.title
+      &nbsp;&gt;&nbsp;
+  %span
+    = @static_page.title
 
 .static_pages
   %h1= @static_page.title
-  = raw @static_page.content
+  = sanitize_static_content @static_page.content
 
 - content_for :secondary_bar do
   - if current_user and current_user.admin?
