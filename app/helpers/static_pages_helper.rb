@@ -35,7 +35,9 @@ module StaticPagesHelper
         end
       end
 
-      case html_tag.to_s.downcase
+      next if html_tag.blank?
+
+      case html_tag.downcase
       when "img"
         output << %[<img src="#{escape_once attributes["src"]}" alt="" />]
 
