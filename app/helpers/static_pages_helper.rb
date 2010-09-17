@@ -18,6 +18,8 @@ module StaticPagesHelper
   def sanitize_static_content(content)
     tokenizer = HTML::Tokenizer.new(content)
     output = ''
+    ignore_last_anchor = true
+
     while token = tokenizer.next
 
       if token[0,1] != "<"
@@ -42,7 +44,17 @@ module StaticPagesHelper
         output << %[<img src="#{escape_once attributes["src"]}" alt="" />]
 
       when "a"
-        output << %[<a href="#{escape_once attributes["href"]}" rel="nofollow">]
+        if attributes["href"].blank?
+          ignore_last_anchor = true
+        else
+          ignore_last_anchor = false
+          output << %[<a href="#{escape_once attributes["href"]}" rel="nofollow">]
+        end
+
+      when "/a"
+        unless ignore_last_anchor
+          output << "</a>"
+        end
 
       when "br", "hr"
         output << "<#{html_tag} />"
