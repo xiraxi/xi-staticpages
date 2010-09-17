@@ -50,3 +50,8 @@ en:
     errors:
       static_page:
         directory_or_child: "Page can not be directory and have parent at the same time"
+
+  search:
+    group:
+      static_page:
+        title: Content pages

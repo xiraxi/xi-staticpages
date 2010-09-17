@@ -32,4 +32,6 @@ class StaticPage < ActiveRecord::Base
     end
     nil
   end
+
+  has_text_search :title, :content
 end
