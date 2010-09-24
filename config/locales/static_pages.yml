@@ -9,6 +9,7 @@ en:
         edit: Edit
         new: New
         index: Index
+        delete: Delete
     children:
       title: Sections
       list: Children
@@ -18,11 +19,15 @@ en:
     edit:
       title: Edit static page
     create:
-      success: The static page has been created successfuly.
+      success: The static page has been created successfully.
       error: "The static page can't be created."
     update:
-      success: The static page has been updated successfuly.
+      success: The static page has been updated successfully.
       error: "The static page can't be saved."
+    destroy:
+      confirm: This action will delete this page, and it can not be undone. Are you sure?
+      success: The page was deleted successfully
+      error: The page could not be deleted
 
     form:
       title: Static Page

@@ -20,6 +20,8 @@
         %li= link_to t("static_pages.management.actions.index"), static_pages_path
         %li= link_to t("static_pages.management.actions.edit"), edit_static_page_path(@static_page)
         %li= link_to t("static_pages.management.actions.new"), new_static_page_path
+        %li= link_to t("static_pages.management.actions.delete"), static_page_path(@static_page), :method => :delete, :confirm => t("static_pages.destroy.confirm")
+
   - parent = @static_page.parent ? @static_page.parent : @static_page
   - if parent.work_as_directory
     .box.section_box

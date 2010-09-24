@@ -33,5 +33,10 @@ class StaticPage < ActiveRecord::Base
     nil
   end
 
+  before_destroy :check_children_before_destroy
+  def check_children_before_destroy
+    self.class.where(:parent_id => id).count == 0
+  end
+
   has_text_search :title, :content
 end

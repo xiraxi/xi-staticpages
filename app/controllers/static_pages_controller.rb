@@ -34,10 +34,19 @@ class StaticPagesController < ApplicationController
 
   def show
     @static_page = StaticPage.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    not_found
   end
 
   def destroy
-    # TODO
+    static_page = StaticPage.find(params[:id])
+    if static_page.destroy
+      flash[:notice] = t("static_pages.destroy.success")
+      redirect_to static_pages_path
+    else
+      flash[:error] = t("static_pages.destroy.error")
+      redirect_to static_page
+    end
   end
 
   def index

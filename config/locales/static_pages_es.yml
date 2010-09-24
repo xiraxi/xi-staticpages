@@ -9,6 +9,7 @@ es:
         edit: Editar página
         new: Nueva página
         index: Índice de páginas
+        delete: Eliminar
     children:
       title: Secciones
       list: Hijos
@@ -23,6 +24,11 @@ es:
     update:
       success: La página estática se ha actualizado correctamente.
       error: No se ha podido actualizar la página estática.
+    destroy:
+      confirm: Esta acción borrará esta página, y no se puede deshacer. ¿Está seguro?
+      success: La página se borró con éxito
+      error: La página no se pudo borrar
+
     form:
       title: Página estática
 
