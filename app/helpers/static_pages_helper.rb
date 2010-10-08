@@ -13,7 +13,7 @@ module StaticPagesHelper
     end
   end
 
-  ValidTagsWithoutAttributes = %w(a ul ol li h2 h3 table thead tfoot tr th td)
+  ValidTagsWithoutAttributes = %w(a ul ol li h2 h3 table thead tfoot tr th td caption)
 
   def sanitize_static_content(content)
     tokenizer = HTML::Tokenizer.new(content)
@@ -41,7 +41,9 @@ module StaticPagesHelper
 
       case html_tag.downcase
       when "img"
-        output << %[<img src="#{escape_once attributes["src"]}" alt="" />]
+        if attributes["src"] =~ /^https?:\/\//i
+          output << %[<img src="#{escape_once attributes["src"]}" alt="" />]
+        end
 
       when "a"
         if attributes["href"].blank?
@@ -81,7 +83,7 @@ module StaticPagesHelper
         end
         output << "<p#{added_attr}>"
 
-      when "div", "p"
+      when "/div", "/p"
         output << "</p>"
 
       when "s", "strike"
