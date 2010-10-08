@@ -91,7 +91,7 @@ module StaticPagesHelper
         output << %[</span>]
 
       else
-        if ValidTagsWithoutAttributes.include?(html_tag.sub(/^\//, ''))
+        if ValidTagsWithoutAttributes.include?(html_tag.downcase.delete("/"))
           output << "<#{html_tag}>"
         end
 
