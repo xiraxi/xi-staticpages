@@ -41,8 +41,9 @@ module StaticPagesHelper
 
       case html_tag.downcase
       when "img"
-        if attributes["src"] =~ /^https?:\/\//i
-          output << %[<img src="#{escape_once attributes["src"]}" alt="#{escape_once attributes["alt"].to_s}" />]
+        img_src = attributes["src"]
+        if img_src =~ /\Ahttps?:\/\//i or img_src =~ %r|\A#{Regexp.escape(root_path + Rails.application.config.static_pages.attachment_path)}/|
+          output << %[<img src="#{escape_once img_src}" alt="#{escape_once attributes["alt"].to_s}" />]
         end
 
       when "a"
