@@ -1,0 +1,35 @@
+!!! Strict
+%html
+  %head
+    %title
+      = t "static_pages.attachments.title"
+    = stylesheet_link_tag "application.css"
+    = javascript_include_tag "jquery.js"
+
+  %body.wysiwyg_file_selector
+    .dialog-box
+      %p.caption
+        = t("static_pages.attachments.message", :limit => number_to_human_size(Rails.application.config.static_pages.attachment_size_limit))
+
+      - if @attachment_error
+        %p.attachment-error
+          = t "static_pages.attachments.errors.#@attachment_error"
+
+      = form_tag controller.request.path, :multipart => true do
+        .file-field
+          %input{:type => "file", :name => "file"}
+
+        .buttons
+          = submit_tag t("static_pages.attachments.submit_button")
+          = button_to_function t("buttons.cancel"), "parent.wysiwyg_insert_image_callback()"
+
+    .uploading-message{:style => "display: none"}
+      = t "static_pages.attachments.loading_msg"
+
+:javascript
+  $(function() {
+    $(".dialog-box form input:submit").click(function() {
+      $(".dialog-box").hide();
+      $(".uploading-message").show();
+    });
+  });

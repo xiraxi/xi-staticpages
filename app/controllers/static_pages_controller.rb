@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
 
-  only_admins :new, :create, :edit, :update, :destroy, :index
+  only_admins :new, :create, :edit, :update, :destroy, :index, :attach_file
 
   def new
     @static_page = StaticPage.new
@@ -51,5 +51,39 @@ class StaticPagesController < ApplicationController
 
   def index
     @static_pages = StaticPage.without_parent.order("work_as_directory, position").all
+  end
+
+  def attach_file
+    if request.post?
+      file = params[:file]
+      if file.original_filename =~ /\.(jpeg|jpg|gif|png)$/i
+
+        img_data = file.read
+        if img_data.size <= Rails.application.config.static_pages.attachment_size_limit
+          img_data_digest = Digest::MD5.new(img_data).hexdigest
+
+          dest_filename = Rails.root.join("public", Rails.application.config.static_pages.attachment_path, img_data_digest + File.extname(file.original_filename))
+
+          dest_dir = dest_filename.dirname
+          dest_dir.mkdir if not dest_dir.exist?
+
+          dest_filename.open("w") {|f| f.binmode; f.write img_data }
+
+          #@alt_text = params[:alt_text]
+          @public_filename =  "/" + dest_filename.to_s.split("/")[-2..-1].join("/")
+          render :action => "attach_file_reply"
+          return
+
+        else # size validation
+          @attachment_error = :too_big
+        end
+
+      else # suffix validation
+        @attachment_error = :invalid_suffix
+      end
+
+    end
+
+    render :layout => false
   end
 end

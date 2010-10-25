@@ -33,3 +33,6 @@
     = buttons_bar do
       = button_ok
       = button_cancel(static_pages_path)
+
+:javascript
+  window.editor_insert_images_path = "#{escape_javascript static_page_attach_file_path}";

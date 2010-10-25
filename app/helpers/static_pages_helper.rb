@@ -42,7 +42,7 @@ module StaticPagesHelper
       case html_tag.downcase
       when "img"
         if attributes["src"] =~ /^https?:\/\//i
-          output << %[<img src="#{escape_once attributes["src"]}" alt="" />]
+          output << %[<img src="#{escape_once attributes["src"]}" alt="#{escape_once attributes["alt"].to_s}" />]
         end
 
       when "a"

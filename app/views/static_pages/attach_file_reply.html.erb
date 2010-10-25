@@ -1,0 +1,10 @@
+<html>
+  <head>
+    <title>Reply</title>
+  </head>
+  <body>
+  <script>
+    parent.wysiwyg_insert_image_callback("<%= escape_javascript image_path(@public_filename) %>", "<%= escape_javascript @alt_text %>");
+  </script>
+  </body>
+</html>"

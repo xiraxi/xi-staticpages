@@ -1,0 +1,14 @@
+
+es:
+  static_pages:
+    attachments:
+      title: Adjuntar una imagen
+      message: "Selecciona un fichero JPEG, PNG o GIF de tu ordenador. El tamaño máximo es %{limit}"
+      alt_text: Texto alternativo
+      submit_button: Adjuntar
+
+      errors:
+        too_big: El fichero es demasiado grande
+        invalid_suffix: El fichero no es válido. Sólo puedes usar imágenes JPEG, PNG o GIF.
+
+      loading_msg: "Subiendo el fichero. Por favor, espera."

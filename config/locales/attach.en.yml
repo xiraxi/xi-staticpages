@@ -1,0 +1,14 @@
+
+en:
+  static_pages:
+    attachments:
+      title: Attach an image
+      message: "Choose a JPEG, PNG or GIF file from your computer. The size limit is %{limit}"
+      alt_text: Alternative text
+      submit_button: Attach it
+
+      errors:
+        too_big: The file is too big.
+        invalid_suffix: The file is not valid. You can use only JPEG, PNG or GIF images.
+
+      loading_msg: "Uploading your file. Please wait."
